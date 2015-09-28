@@ -27,22 +27,41 @@ class CObject
         return $this;
     }
 
-   
+    public function __call($name,$args)
+    {
+        $ind = substr($name,0,3);// search prefix "set", "has" or "get"
+        $name = substr($name,3); // another part of method's name to under_score
+        $name = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $name)), '_');
 
-    // protected function _camelCase($name)
-    // {
-    //     $name = substr($name, 3);
-    //     $name = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $name)), '_');
-    //     return $name;
-    // }
+        switch ($ind) {
+            case 'has':
+                # code...
+                break;
 
+            case 'set':
+                $this->setData($name,array_shift($args));
+                break;
+
+            case 'get':
+                return $this->getData($name);
+                break;    
+
+            default:
+                echo "wrong method's!!";
+                break;
+        }
+    }
 
 }
 $basa = new CObject();
-$basa->setData('Artem','Kozhuh');
-$basa->setData('Artem1','Kozhuh1');
-$basa->setData('Shumer');
 echo "<pre>";
-print_r($basa->getData());
-var_dump($basa->getData('0'));
+$basa->setCustomerName('Artem');
+$basa->setCustomerLastname('Kozhuh');
+$basa->setCustomerAge('26');
+
+
+print_r ($basa->getCustomerName());
 echo "</pre>";
+echo "<br />";
+// $basa->setCustomerName();
+
