@@ -13,7 +13,7 @@ class CObject
             return $this->_data;
     }
 
-    public function setData($value,$key = NULL)
+    public function setData($key = NULL, $value)
     {
         if (isset($key) && $value ){
 
@@ -29,10 +29,10 @@ class CObject
 
     public function __call($name,$args)
     {
+        // var_dump($name, $args);die;
         $ind = substr($name,0,3);// search prefix "set", "has" or "get"
         $name = substr($name,3); // another part of method's name to under_score
         $name = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $name)), '_');
-
         switch ($ind) {
             case 'has':
                 # code...
@@ -54,13 +54,15 @@ class CObject
 
 }
 $basa = new CObject();
-echo "<pre>";
+
 $basa->setCustomerName('Artem');
 $basa->setCustomerLastname('Kozhuh');
 $basa->setCustomerAge('26');
 
-
-print_r ($basa->getCustomerName());
+echo "<pre>";
+var_dump ($basa->getCustomerName());
+var_dump ($basa->getCustomerLastname());
+var_dump ($basa->getCustomerAge());
 echo "</pre>";
 echo "<br />";
 // $basa->setCustomerName();
