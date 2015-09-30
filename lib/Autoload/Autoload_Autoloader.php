@@ -5,7 +5,7 @@ class Autoload_Autoloader
     public static function autoload($className)
     {
         // все как в ZF, чтобы отыскать класс заменяем в нем
-      // '_' на '/'
+        // '_' на '/'
         $className = str_replace('_', '/', $className);
         $classPath = LIBRARY_PATH . DIRECTORY_SEPARATOR . $className . '.php';
         if (file_exists($classPath) && is_readable($classPath)) {
