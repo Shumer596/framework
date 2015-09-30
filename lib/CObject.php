@@ -13,15 +13,15 @@ class CObject
             return $this->_data;
     }
 
-    public function setData($key = NULL, $value)
+    public function setData($key, $value = NULL)
     {
-        if (isset($key) && $value ){
+        if ($key && isset($value)){
 
             $this->_data[$key] = $value;
 
         } else {
 
-            $this->_data[]=$value;
+            $this->_data[]=$key;
 
         }
         return $this;
@@ -58,12 +58,11 @@ $basa = new CObject();
 $basa->setCustomerName('Artem');
 $basa->setCustomerLastname('Kozhuh');
 $basa->setCustomerAge('26');
+$basa->setCustomerSex('Male');
 
 echo "<pre>";
-var_dump ($basa->getCustomerName());
-var_dump ($basa->getCustomerLastname());
-var_dump ($basa->getCustomerAge());
+print_r($basa->getData());
 echo "</pre>";
-echo "<br />";
-// $basa->setCustomerName();
+
+
 
