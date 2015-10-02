@@ -1,19 +1,10 @@
 <?php
+ini_set('display_errors',1);
+require_once 'app/App.php';
+App::run();
+/* @var $db Zend_Db_Adapter_Pdo_Mysql */
+$db = App::registry('write_connection');
 
-// объявляем нужные константы
-define('APPLICATION_PATH', realpath('app'));
-define('LIBRARY_PATH', realpath('lib'));
+$select = new Zend_Db_Select($db);
 
-$paths = array(APPLICATION_PATH,LIBRARY_PATH);
-
-set_include_path(implode($paths,PATH_SEPARATOR));
-
-require_once 'Autoload/Autoload_Autoloader.php';
-
-// регистрируем наш автолоадер
-spl_autoload_register(array('Autoload_Autoloader', 'autoload'));
-
-$b = new Hello();
-$b->bla();
-
-?>
+var_dump($select);
