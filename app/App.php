@@ -59,10 +59,9 @@ final class App
         /* return object of that class */
     }
 
-    public static  function getRouter()
+    public function getRouter()
     {
-        include 'Core/Controller/Router.php';
-        Core_Controller_Router::dispatch();
+        return new Core_Controller_Router();
     }
 
     public static function run($scope = null)
@@ -74,15 +73,10 @@ final class App
 
         set_include_path(implode($paths,PATH_SEPARATOR));
 
-        // var_dump(get_include_path());die;
-
-        require_once 'Autoload/Autoload_Autoloader.php';
+        require_once 'Autoload/Autoloader.php';
 
         spl_autoload_register(array('Autoload_Autoloader', 'autoload'));
-        self::getRouter();
         self::_initConnection();
-        
-        
-
+        self::getRouter()->dispatch();
     }
 }
