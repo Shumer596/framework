@@ -1,5 +1,5 @@
 <?php
-class IndexController 
+class Core_FrontController extends Core_Controller_Abstract
 {
     public function indexAction()
     {

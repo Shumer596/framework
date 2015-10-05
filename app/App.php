@@ -58,6 +58,11 @@ final class App
     {
         /* return object of that class */
     }
+    
+    public static public function getRouter()
+    {
+        return new Core_Controller_Router();
+    }
 
     public static function run($scope = null)
     {
