@@ -58,10 +58,11 @@ final class App
     {
         /* return object of that class */
     }
-    
-    public static public function getRouter()
+
+    public static  function getRouter()
     {
-        return new Core_Controller_Router();
+        include 'Core/Controller/Router.php';
+        Core_Controller_Router::dispatch();
     }
 
     public static function run($scope = null)
@@ -78,5 +79,8 @@ final class App
         spl_autoload_register(array('Autoload_Autoloader', 'autoload'));
 
         self::_initConnection();
+        self::getRouter();
+        
+
     }
 }

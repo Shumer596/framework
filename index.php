@@ -2,6 +2,7 @@
 ini_set('display_errors',1);
 require_once 'app/App.php';
 App::run();
+
 /* @var $db Zend_Db_Adapter_Pdo_Mysql */
 $db = App::registry('write_connection');
 

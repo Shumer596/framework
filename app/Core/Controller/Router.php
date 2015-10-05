@@ -1,9 +1,10 @@
 <?php
 class Core_Controller_Router
 {
- static function dispatch();
+ public static function dispatch()
  	{
- 		
+ 		$uri = explode('/', $_SERVER['REQUEST_URI']);
+   		
 	}
 
 }
