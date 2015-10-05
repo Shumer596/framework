@@ -1,4 +1,15 @@
 <?php
+define('APPLICATION_PATH', realpath('app'));
+define('LIBRARY_PATH', realpath('lib'));
+
+$paths = array(APPLICATION_PATH,LIBRARY_PATH);
+
+set_include_path(implode($paths,PATH_SEPARATOR));
+
+require_once 'Autoload/Autoloader.php';
+
+Autoload_Autoloader::register();
+
 final class App
 {
     static private $_registry;
@@ -66,16 +77,6 @@ final class App
 
     public static function run($scope = null)
     {
-        define('APPLICATION_PATH', realpath('app'));
-        define('LIBRARY_PATH', realpath('lib'));
-
-        $paths = array(APPLICATION_PATH,LIBRARY_PATH);
-
-        set_include_path(implode($paths,PATH_SEPARATOR));
-
-        require_once 'Autoload/Autoloader.php';
-
-        spl_autoload_register(array('Autoload_Autoloader', 'autoload'));
         self::_initConnection();
         self::getRouter()->dispatch();
     }
