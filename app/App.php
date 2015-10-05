@@ -6,7 +6,7 @@ final class App
     /**
      * @return Zend_Config
      */
-    protected function _getConfig()
+    protected static function _getConfig()
     {
         return new Zend_Config(array(
             'host' => '127.0.0.1',
@@ -15,7 +15,7 @@ final class App
             'dbname' => 'zf'
         ));
     }
-    protected function _initConnection()
+    protected static function _initConnection()
     {
         self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(self::_getConfig()));
     }
@@ -74,12 +74,14 @@ final class App
 
         set_include_path(implode($paths,PATH_SEPARATOR));
 
+        // var_dump(get_include_path());die;
+
         require_once 'Autoload/Autoload_Autoloader.php';
 
         spl_autoload_register(array('Autoload_Autoloader', 'autoload'));
-
-        self::_initConnection();
         self::getRouter();
+        self::_initConnection();
+        
         
 
     }
