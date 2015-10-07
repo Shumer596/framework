@@ -53,16 +53,5 @@ class CObject
     }
 
 }
-$basa = new CObject();
-
-$basa->setCustomerName('Artem');
-$basa->setCustomerLastname('Kozhuh');
-$basa->setCustomerAge('26');
-$basa->setCustomerSex('Male');
-
-echo "<pre>";
-print_r($basa->getData());
-echo "</pre>";
-
 
 
