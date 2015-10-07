@@ -14,6 +14,10 @@ final class App
 {
     static private $_registry;
 
+    static private $_request;
+
+    static private $_response;
+
     /**
      * @return Zend_Config
      */
@@ -29,6 +33,13 @@ final class App
     protected static function _initConnection()
     {
         self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(self::_getConfig()));
+    }
+
+    protected static function _initApplication()
+    {
+        self::$_request = new Core_Model_Request();
+
+        /* todo add something here later */
     }
 
     /**
@@ -70,6 +81,14 @@ final class App
         /* return object of that class */
     }
 
+    /**
+     * @return Core_Model_Request
+     */
+    public static function getRequest()
+    {
+        return self::$_request;
+    }
+
     public function getRouter()
     {
         return new Core_Controller_Router();
@@ -77,6 +96,7 @@ final class App
 
     public static function run($scope = null)
     {
+        self::_initApplication();
         self::_initConnection();
         self::getRouter()->dispatch();
     }

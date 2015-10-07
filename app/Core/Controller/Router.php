@@ -2,6 +2,7 @@
 class Core_Controller_Router
 {
  public static function dispatch()
+
  	{
 	$f = preg_split("[/]", $_SERVER['PATH_INFO'], -1, PREG_SPLIT_NO_EMPTY);
 	echo "<pre>";
