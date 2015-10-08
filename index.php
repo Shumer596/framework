@@ -8,5 +8,5 @@ $db = App::registry('write_connection');
 
 $select = new Zend_Db_Select($db);
 
-
+//var_dump(App::getRequest());
 // var_dump($select);

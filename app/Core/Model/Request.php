@@ -2,11 +2,6 @@
 class Core_Model_Request extends CObject
 {
 
-
-
-    /**
-     *  @setModule() return module path
-     */
     public function __construct()
     {
        $request = preg_split("[/]", $_SERVER['PATH_INFO'], -1, PREG_SPLIT_NO_EMPTY);
@@ -47,7 +42,6 @@ class Core_Model_Request extends CObject
             $this->setParams($result);
         }
 
-    	print_r(($this->getData()));
-        /* cut your request here */
     }
+
 }

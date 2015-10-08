@@ -87,9 +87,10 @@ final class App
     public static function getRequest()
     {
         return self::$_request;
+
     }
 
-    public function getRouter()
+    public static function  getRouter()
     {
         return new Core_Controller_Router();
     }
