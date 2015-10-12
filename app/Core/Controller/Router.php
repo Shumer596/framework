@@ -30,6 +30,10 @@ class Core_Controller_Router
      {
        $index->$action();
      }
+     else
+     {
+       echo "method does not exist {$action}";
+     }
 
 	}
 }
