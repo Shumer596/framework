@@ -11,15 +11,27 @@ class Core_Model_Request extends CObject
         {
             $this->setModule($request[0]);
         }
+        else
+        {
+            $this->setModule('core');
+        }
 
         if(isset($request[1]))
         {
             $this->setController($request[1]);
         }
+        else
+        {
+            $this->setController('index');
+        }
 
         if(isset($request[2]))
         {
             $this->setAction($request[2]);
+        }
+        else
+        {
+            $this->setAction('index');
         }
 
         	for ($i=0; $i <3 ; $i++) 

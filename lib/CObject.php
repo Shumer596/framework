@@ -27,9 +27,13 @@ class CObject
         return $this;
     }
 
+    /**
+     * @param $name mixed
+     * @param $args array
+     * @return array
+     */
     public function __call($name,$args)
     {
-        // var_dump($name, $args);die;
         $ind = substr($name,0,3);// search prefix "set", "has" or "get"
         $name = substr($name,3); // another part of method's name to under_score
         $name = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $name)), '_');
