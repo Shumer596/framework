@@ -28,8 +28,8 @@ class CObject
     }
 
     /**
-     * @param $name mixed
-     * @param $args array
+     * @name mixed CObject
+     *
      * @return array
      */
     public function __call($name,$args)
