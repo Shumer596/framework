@@ -55,4 +55,10 @@ class Core_Model_Request extends CObject
 
     }
 
+    public function getParam($param)
+    {
+
+        return $this->getParams()[$param];
+    }
+
 }
