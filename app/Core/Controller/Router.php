@@ -13,15 +13,20 @@ class Core_Controller_Router
      $params = $request->getParams();
 
 
-     if (isset($controller)) {
+     if (isset($controller))
+     {
       $path_file = 'app/' . $module . '/controllers/' . $controller . 'Controller.php';
-      if (file_exists($path_file)) {
-//            var_dump($path_file);die;
-       include $path_file;
-      } else {
-       echo "file does not exist ->" . $path_file;
-      }
-     } else {
+        if (file_exists($path_file))
+        {
+         include $path_file;
+        }
+        else
+        {
+         echo "file does not exist ->" . $path_file;
+        }
+     }
+     else
+     {
       return $request;
      }
 

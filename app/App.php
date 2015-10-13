@@ -79,6 +79,13 @@ final class App
     public static function getModel($path)
     {
         /* return object of that class */
+        $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
+
+        $module = $request[0];
+        $resource = $request[1];
+
+        $class_name = ucwords($module) . '_Model_' . ucwords($resource);
+        return new $class_name;
     }
 
     /**
