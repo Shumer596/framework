@@ -5,7 +5,6 @@ class Core_Model_Request extends CObject
     public function __construct()
     {
        $request = preg_split("[/]", $_SERVER['PATH_INFO'], -1, PREG_SPLIT_NO_EMPTY);
-        echo "<pre>";
 
         if(isset($request[0]))
         {

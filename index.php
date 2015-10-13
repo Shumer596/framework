@@ -8,7 +8,8 @@ $db = App::registry('write_connection');
 
 $select = new Zend_Db_Select($db);
 
-$connect = App::getModel('core/resource');
-$v= $connect->getReadConnection();
+//var_dump(App::getRequest());die;
+//$connect = App::getModel('core/resource');
+//$v= $connect->getReadConnection();
 
 // var_dump($select);

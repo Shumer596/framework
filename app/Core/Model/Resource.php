@@ -7,7 +7,7 @@ class Core_Model_Resource
     public function getReadConnection()
     {
         /* return Zend_Db_Select */
-        echo "/* return Zend_Db_Select */";
+//        echo "/* return Zend_Db_Select */";
     }
 
     public function getWriteConnection()
