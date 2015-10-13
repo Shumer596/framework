@@ -13,7 +13,7 @@ class Core_Model_Request extends CObject
         }
         else
         {
-            $this->setModule('CMS');
+            $this->setModule('Cms');
         }
 
         if(isset($request[1]))
