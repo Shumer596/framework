@@ -13,7 +13,7 @@ class Core_Model_Request extends CObject
         }
         else
         {
-            $this->setModule('core');
+            $this->setModule('CMS');
         }
 
         if(isset($request[1]))
@@ -40,7 +40,7 @@ class Core_Model_Request extends CObject
         	
          	}
 
-        // get second part of request
+        // set second part of request
         if (isset($request[0]))
         {
             $array =$request;

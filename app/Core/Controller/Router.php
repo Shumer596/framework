@@ -14,7 +14,7 @@ class Core_Controller_Router
 
 
      if (isset($controller)) {
-      $path_file = 'app/' . $module . '/controllers/' . ucwords($controller) . 'Controller.php';
+      $path_file = 'app/' . $module . '/controllers/' . $controller . 'Controller.php';
       if (file_exists($path_file)) {
 //            var_dump($path_file);die;
        include $path_file;
