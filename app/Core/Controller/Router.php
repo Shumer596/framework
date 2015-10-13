@@ -25,7 +25,8 @@ class Core_Controller_Router
       return $request;
      }
 
-     $index = new Core_FrontController();
+     $class_name = $module . '_FrontController';
+     $index = new $class_name;
      if(method_exists($index,$action))
      {
        $index->$action();
