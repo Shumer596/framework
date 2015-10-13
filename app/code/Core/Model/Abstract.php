@@ -5,10 +5,10 @@ abstract class Core_Model_Abstract extends CObject
 
     protected function _init($resourceName)
     {
-        $this->_resource = App::getModel(/* app/code/module/Model/Resource/name */);
+        $this->_resource = App::getResourceModel($resourceName);
     }
     protected function _getResource()
     {
-        /* return Core_Model_Resource_Abstract */
+        return $this->_resource;
     }
 }

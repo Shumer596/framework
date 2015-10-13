@@ -76,6 +76,11 @@ final class App
 
     }
 
+    public static function getResourceModel($path)
+    {
+        /* todo */
+    }
+
     public static function getModel($path)
     {
         /* return object of that class */
