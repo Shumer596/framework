@@ -1,6 +1,7 @@
 <?php
-define('APPLICATION_PATH', realpath('app'));
+define('APPLICATION_PATH', realpath('app/code'));
 define('LIBRARY_PATH', realpath('lib'));
+define('DS', DIRECTORY_SEPARATOR);
 
 $paths = array(APPLICATION_PATH,LIBRARY_PATH);
 
@@ -16,28 +17,27 @@ final class App
 
     static private $_request;
 
+    static private $_config;
+
     static private $_response;
 
     /**
      * @return Zend_Config
      */
-    protected static function _getConfig()
+    protected static function _getConfig($param = null)
     {
-        return new Zend_Config(array(
-            'host' => '127.0.0.1',
-            'username' => 'vagrant',
-            'password' => 'vaimo123',
-            'dbname' => 'zf'
-        ));
+        return $param ? self::$_config['config'][$param] : self::$_config['config'];
     }
     protected static function _initConnection()
     {
-        self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(self::_getConfig()));
+        self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db'))));
     }
 
     protected static function _initApplication()
     {
         self::$_request = new Core_Model_Request();
+
+        self::$_config = Zend_Json::decode(file_get_contents('app/config/local.json'));
 
         /* todo add something here later */
     }

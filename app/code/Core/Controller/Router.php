@@ -15,7 +15,7 @@ class Core_Controller_Router
 
      if (isset($controller))
      {
-      $path_file = 'app/' . ucwords($module). '/controllers/' . ucwords($controller ) . 'Controller.php';
+      $path_file = 'app' . DS . 'code' . DS . ucwords($module). '/controllers/' . ucwords($controller) . 'Controller.php';
 
         if (file_exists($path_file))
         {
@@ -30,8 +30,7 @@ class Core_Controller_Router
      {
       return $request;
      }
-
-     $class_name = ucwords($module). '_IndexController';
+        $class_name = ucwords($module). '_'. ucwords($controller) .'Controller';
      $index = new $class_name;
      if(method_exists($index,$action))
      {
