@@ -51,7 +51,7 @@ class CObject
                 break;    
 
             default:
-                echo "wrong method's!!";
+                throw new Exception('Method does not exist in CObject');
                 break;
         }
     }

@@ -23,7 +23,7 @@ class Core_Controller_Router
         }
         else
         {
-         echo "file does not exist ->" . $path_file;
+            throw new Exception("file does not exist -> $path_file");
         }
      }
      else
@@ -39,7 +39,7 @@ class Core_Controller_Router
      }
      else
      {
-       echo "method does not exist {$action}";
+         throw new Exception("method does not exist {$action}");
      }
 
 	}
