@@ -5,7 +5,7 @@ abstract class Core_Model_Resource_Abstract extends CObject
 
     public function load($id, $column = null)
     {
-        /* TODO*/
+
     }
 
     public function save()

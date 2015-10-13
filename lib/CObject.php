@@ -27,11 +27,7 @@ class CObject
         return $this;
     }
 
-    /**
-     * @name mixed CObject
-     *
-     * @return array
-     */
+
     public function __call($name,$args)
     {
         $ind = substr($name,0,3);// search prefix "set", "has" or "get"
@@ -51,9 +47,11 @@ class CObject
                 break;    
 
             default:
-                throw new Exception('Method does not exist in CObject');
+                throw new Exception(sprintf('Method %s does not exist in %s', $name, get_class($this)));
                 break;
         }
+
+        return $this;
     }
 
 }
