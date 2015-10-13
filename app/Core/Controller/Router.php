@@ -31,7 +31,7 @@ class Core_Controller_Router
       return $request;
      }
 
-     $class_name = ucwords($module). '_IndexController';
+     $class_name = ucwords($module). '_'. ucwords($controller) .'Controller';
      $index = new $class_name;
      if(method_exists($index,$action))
      {
