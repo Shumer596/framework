@@ -21,7 +21,7 @@ final class App
 
     static private $_response;
 
-    static private $_instance = null;
+    static private $_instance = array();
 
     private function __construct(){} // pattern Singleton defense from copy
     private function __clone()    {} // pattern Singleton defense from copy
@@ -90,28 +90,28 @@ final class App
 
     public static function getSingleton($path)
     {
-        if (self::$_instance === null)
+        $request = array();
+
+        if (isset($path))
         {
-            $request = array();
-
-            if (isset($path))
-            {
-                $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
-            }
-            else
-            {
-                throw new Exception('Does not exist' . $path . 'in App::getSingleton()');
-            }
-
-            $module = $request[0];
-            $resource = $request[1];
-
-            $class_name = ucwords($module) . '_Model_' . ucwords($resource);
-
-            self::$_instance = new $class_name;
+            $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
+        }
+        else
+        {
+            throw new Exception('Does not exist' . $path . 'in App::getSingleton()');
         }
 
-        return self::$_instance;
+        $module = $request[0];
+        $resource = $request[1];
+
+        $class_name = ucwords($module) . '_Model_' . ucwords($resource);
+
+        if (!isset(self::$_instance[$path]))
+        {
+            self::$_instance[$path] = new $class_name;
+        }
+
+        return self::$_instance[$path];
     }
 
     public static function getModel($path)
