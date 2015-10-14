@@ -28,6 +28,7 @@ final class App
     {
         return $param ? self::$_config['config'][$param] : self::$_config['config'];
     }
+
     protected static function _initConnection()
     {
         self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db'))));
@@ -84,7 +85,15 @@ final class App
     public static function getModel($path)
     {
         /* return object of that class */
-        $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
+        $request = array();
+        if (isset($path))
+        {
+            $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
+        }
+        else
+        {
+            throw new Exception('Does not exist' . $path . 'in App::getModel()');
+        }
 
         $module = $request[0];
         $resource = $request[1];

@@ -10,9 +10,6 @@ $select = new Zend_Db_Select($db);
 
 $select->from('blog_post');
 $result = $db->query($select);
-//var_dump($result->fetchAll());
-
+var_dump($result->fetchAll());
 //$connect = App::getModel('core/resource');
-//$v= $connect->getConnection();
-
 

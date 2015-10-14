@@ -1,12 +1,12 @@
 <?php
-class Core_Model_Resource
+class Core_Model_Resource extends CObject
 {
-    protected $_connect;
+    protected $_connect = null;
 
     public function getConnection()
     {
         /* return Zend_Db_Adapter_Pdo_Mysql */
-        return $_connect;
+        return $this->_connect;
     }
 
     public  function select()
@@ -18,6 +18,11 @@ class Core_Model_Resource
     public function setConnection()
     {
         $_connect = Zend_Db_Adapter_Pdo_Mysql();
+    }
+
+    public function _getConnection()
+    {
+        return App::registry('db_connection');
     }
 
 }
