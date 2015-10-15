@@ -35,37 +35,6 @@ final class App
     {
     } // pattern Singleton defense from copy
 
-    /**
-     * @return Zend_Config
-     */
-    protected static function _getConfig($param = null)
-    {
-//        return $param ? self::$_config['config'][$param] : self::$_config['config'];
-    }
-
-    protected static function _initConnection()
-    {
-//        self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db'))));
-    }
-
-    protected static function _initApplication()
-    {
-        self::$_request = new Core_Model_Request();
-
-//        self::$_config = Zend_Json::decode(file_get_contents('app/config/local.json'));
-
-        /* todo add something here later */
-    }
-
-    /**
-     * @param $key
-     * @return mixed
-     */
-    private function _getRegistry($key)
-    {
-        return $this->_registry[$key];
-    }
-
 
     public static function register($key, $value)
     {
@@ -76,16 +45,26 @@ final class App
     }
 
     /**
-     * @param $key
-     * @return mixed
+     * @return Zend_Config
      */
-    public static function registry($key)
+    protected static function getConfig()
     {
-        if (isset(self::$_registry[$key])) {
-            return self::$_registry[$key];
-        }
-        return null;
+
+        return self::$_config;
+
     }
+
+
+    protected static function _initApplication()
+    {
+        self::$_request = new Core_Model_Request();
+
+        self::$_config = self::getSingleton('core/config');
+
+        /* todo add something here later */
+    }
+
+
 
     public static function core()
     {
@@ -153,7 +132,6 @@ final class App
     public static function run($scope = null)
     {
         self::_initApplication();
-        self::_initConnection();
         self::getRouter()->dispatch();
     }
 }
