@@ -2,14 +2,13 @@
 class Core_Model_Resource
 {
     private $_connect;
-    private $_config;
+
 
     public function __construct()
     {
         /* return Zend_Db_Adapter_Pdo_Mysql */
 
-        $this->_config = App::getConfig();
-        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config($this->_config->_getConfig('db')));
+        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(App::getConfig()->getConfig('db')));
 
     }
 
@@ -20,7 +19,7 @@ class Core_Model_Resource
         return new Zend_Db_Select($this->_connect);
     }
 
-    public function getConnection()
+    public function getConnect()
     {
 
         return $this->_connect;

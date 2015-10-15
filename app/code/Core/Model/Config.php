@@ -3,6 +3,7 @@ class Core_Model_Config
 {
     private $_config;
 
+
     public function __construct()
     {
 
@@ -10,10 +11,25 @@ class Core_Model_Config
 
     }
 
-    public  function _getConfig($param = null)
+    public  function getConfig($param = null)
     {
 
         return $param ? $this->_config['config'][$param] : $this->_config['config'];
+
+    }
+
+    public  function  getNode($key = null)
+    {
+//
+        if (isset($this->_config['config'][$key]))
+        {
+            return $this->_config['config'][$key];
+        }
+
+        else
+        {
+            return $this->_config;
+        }
 
     }
 
