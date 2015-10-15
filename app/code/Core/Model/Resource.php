@@ -8,16 +8,8 @@ class Core_Model_Resource
     {
         /* return Zend_Db_Adapter_Pdo_Mysql */
 
-//        $this->_config = Zend_Json::decode(file_get_contents('app/config/local.json'));
         $this->_config = App::getConfig();
-        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db')));
-
-    }
-
-    protected  function _getConfig($param = null)
-    {
-
-        return $param ? $this->_config['config'][$param] : $this->_config['config'];
+        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config($this->_config->_getConfig('db')));
 
     }
 

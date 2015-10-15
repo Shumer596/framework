@@ -10,7 +10,7 @@ class Core_Model_Config
 
     }
 
-    protected  function _getConfig($param = null)
+    public  function _getConfig($param = null)
     {
 
         return $param ? $this->_config['config'][$param] : $this->_config['config'];

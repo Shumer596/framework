@@ -47,7 +47,7 @@ final class App
     /**
      * @return Zend_Config
      */
-    protected static function getConfig()
+    public static function getConfig()
     {
 
         return self::$_config;
@@ -59,7 +59,7 @@ final class App
     {
         self::$_request = new Core_Model_Request();
 
-        self::$_config = self::getSingleton('core/config');
+        self::$_config = new Core_Model_Config();
 
         /* todo add something here later */
     }
