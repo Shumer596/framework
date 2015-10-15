@@ -73,7 +73,19 @@ final class App
 
     public static function getResourceModel($path)
     {
-        /* todo */
+        // return new {Moduel}_Model_Resource_{Name}
+        $request = array();
+        if (isset($path)) {
+            $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
+        } else {
+            throw new Exception('Does not exist' . $path . 'in App::getResourceModel()');
+        }
+
+        $module = $request[0];
+        $name = $request[1];
+
+        $class_name = ucwords($module) . '_Model_Resource_' . ucwords($name);
+        return new $class_name;
     }
 
     public static function getSingleton($path)

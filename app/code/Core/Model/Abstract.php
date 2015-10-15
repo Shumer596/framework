@@ -11,4 +11,12 @@ abstract class Core_Model_Abstract extends CObject
     {
         return $this->_resource;
     }
+
+    protected function load()
+    {
+
+
+
+    }
+
 }

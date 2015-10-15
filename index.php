@@ -15,4 +15,4 @@ $select->from('blog_post');
 $result = $db->query($select);
 var_dump($result->fetchAll());
 
-$a = App::getConfig()->getNode('db');
+//$a = App::getConfig()->getNode('db');

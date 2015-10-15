@@ -3,15 +3,13 @@ class Core_Model_Resource
 {
     private $_connect;
 
-
     public function __construct()
     {
         /* return Zend_Db_Adapter_Pdo_Mysql */
 
-        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(App::getConfig()->getConfig('db')));
+        $this->_connect = new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(App::getConfig()->getNode('db')));
 
     }
-
 
     public  function select()
     {

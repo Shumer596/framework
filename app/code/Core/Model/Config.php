@@ -11,12 +11,12 @@ class Core_Model_Config
 
     }
 
-    public  function getConfig($param = null)
-    {
-
-        return $param ? $this->_config['config'][$param] : $this->_config['config'];
-
-    }
+//    public  function getConfig($param = null)
+//    {
+//
+//        return $param ? $this->_config['config'][$param] : $this->_config['config'];
+//
+//    }
 
     public  function  getNode($key = null)
     {
@@ -28,7 +28,7 @@ class Core_Model_Config
 
         else
         {
-            return $this->_config;
+            return $this->_config['config'];
         }
 
     }

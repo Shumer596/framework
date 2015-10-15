@@ -20,6 +20,6 @@ abstract class Core_Model_Resource_Abstract extends CObject
     
     protected function _getConnection()
     {
-        return App::registry('db_connection');
+
     }
 }
