@@ -3,9 +3,9 @@ define('APPLICATION_PATH', realpath('app/code'));
 define('LIBRARY_PATH', realpath('lib'));
 define('DS', DIRECTORY_SEPARATOR);
 
-$paths = array(APPLICATION_PATH,LIBRARY_PATH);
+$paths = array(APPLICATION_PATH, LIBRARY_PATH);
 
-set_include_path(implode($paths,PATH_SEPARATOR));
+set_include_path(implode($paths, PATH_SEPARATOR));
 
 require_once 'Autoload/Autoloader.php';
 
@@ -21,30 +21,38 @@ final class App
 
     static private $_response;
 
-    static private $_instance = array();
+    static private $_instance;
 
-    private function __construct(){} // pattern Singleton defense from copy
-    private function __clone()    {} // pattern Singleton defense from copy
-    private function __wakeup()   {} // pattern Singleton defense from copy
+    private function __construct()
+    {
+    } // pattern Singleton defense from copy
+
+    private function __clone()
+    {
+    } // pattern Singleton defense from copy
+
+    private function __wakeup()
+    {
+    } // pattern Singleton defense from copy
 
     /**
      * @return Zend_Config
      */
     protected static function _getConfig($param = null)
     {
-        return $param ? self::$_config['config'][$param] : self::$_config['config'];
+//        return $param ? self::$_config['config'][$param] : self::$_config['config'];
     }
 
     protected static function _initConnection()
     {
-        self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db'))));
+//        self::register('write_connection', new Zend_Db_Adapter_Pdo_Mysql(new Zend_Config(self::_getConfig('db'))));
     }
 
     protected static function _initApplication()
     {
         self::$_request = new Core_Model_Request();
 
-        self::$_config = Zend_Json::decode(file_get_contents('app/config/local.json'));
+//        self::$_config = Zend_Json::decode(file_get_contents('app/config/local.json'));
 
         /* todo add something here later */
     }
@@ -62,10 +70,11 @@ final class App
     public static function register($key, $value)
     {
         if (isset(self::$_registry[$key])) {
-            throw new Exception('Registry key "'.$key.'" already exists');
+            throw new Exception('Registry key "' . $key . '" already exists');
         }
         self::$_registry[$key] = $value;
     }
+
     /**
      * @param $key
      * @return mixed
@@ -92,12 +101,9 @@ final class App
     {
         $request = array();
 
-        if (isset($path))
-        {
+        if (isset($path)) {
             $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
-        }
-        else
-        {
+        } else {
             throw new Exception('Does not exist' . $path . 'in App::getSingleton()');
         }
 
@@ -106,8 +112,7 @@ final class App
 
         $class_name = ucwords($module) . '_Model_' . ucwords($resource);
 
-        if (!isset(self::$_instance[$path]))
-        {
+        if (!isset(self::$_instance[$path])) {
             self::$_instance[$path] = new $class_name;
         }
 
@@ -118,12 +123,9 @@ final class App
     {
         /* return object of that class */
         $request = array();
-        if (isset($path))
-        {
+        if (isset($path)) {
             $request = preg_split("[/]", $path, -1, PREG_SPLIT_NO_EMPTY);
-        }
-        else
-        {
+        } else {
             throw new Exception('Does not exist' . $path . 'in App::getModel()');
         }
 
