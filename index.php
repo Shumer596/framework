@@ -4,11 +4,11 @@ require_once 'app/App.php';
 App::run();
 
 //$connect = App::getSingleton('core/resource');
-
+//
 //$db = $connect->getConnect();
 //$select = $connect->select();
-//$s1 =$select->from('blog_post');
-//$s1->where('id',1);
+//$select->from('blog_post')->where('id = ?',2);
+////$select->where('id = ?',3);
 //$result = $db->query($select);
 //var_dump($result->fetchAll());
 
@@ -29,4 +29,4 @@ App::run();
 //$thirdModel = App::getModel('blog/post')->load(1);
 //var_dump($thirdModel->getTitle());
 
-Core_Model_Resource_Abstract::load(App::getModel('blog/post'),'id',1);
+Core_Model_Resource_Abstract::load(App::getModel('blog/post'),2,'id');

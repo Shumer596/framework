@@ -9,9 +9,11 @@ abstract class Core_Model_Resource_Abstract extends CObject
     public static function load(Core_Model_Abstract $object, $value, $field = null)
     {
         $connect = App::getSingleton('core/resource');
-        $select  = $connect->select();
-        $b = $select->from('blog_post')->where($value)->order($field);
-        var_dump($b);
+        $db = $connect->getConnect();
+        $select = $connect->select();
+        $select->from('blog_post')->where("$field=?",$value);
+        $result= $db->query($select);
+        var_dump($result->fetchAll());
 
     }
 

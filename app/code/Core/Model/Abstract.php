@@ -15,8 +15,6 @@ abstract class Core_Model_Abstract extends CObject
     protected function load()
     {
 
-
-
     }
 
 }
