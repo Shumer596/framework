@@ -102,7 +102,7 @@ final class App
 
     /**
      * @param $path
-     * @return Object
+     * @return object
      * @throws Exception
      */
     public static function getModel($path)
@@ -124,7 +124,7 @@ final class App
 
     /**
      * @param $path
-     * @return $class_name
+     * @return object
      * @throws Exception
      */
     public static function getResourceModel($path)

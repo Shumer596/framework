@@ -6,11 +6,11 @@ abstract class Core_Model_Resource_Abstract extends CObject
 
     abstract protected function _init($tableName, $idField);
 
-    public static function load($id, $column = null)
+    public static function load(Core_Model_Abstract $object, $value, $field = null)
     {
         $connect = App::getSingleton('core/resource');
         $select  = $connect->select();
-        $select->from('blog_post')->where($id);
+        $b = $select->from('blog_post')->where($value)->order($field);
         var_dump($b);
 
     }
