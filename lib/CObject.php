@@ -1,8 +1,15 @@
 <?php
 class CObject
 {
+    /**
+     * @var array
+     */
     protected $_data = array();
 
+    /**
+     * @param null $key
+     * @return array
+     */
     public function getData($key = NULL)
     {
         if (isset($this->_data[$key])) {
@@ -13,6 +20,11 @@ class CObject
             return $this->_data;
     }
 
+    /**
+     * @param $key
+     * @param null $value
+     * @return $this
+     */
     public function setData($key, $value = NULL)
     {
         if ($key && isset($value)){
@@ -28,6 +40,12 @@ class CObject
     }
 
 
+    /**
+     * @param $name
+     * @param $args
+     * @return $this|array
+     * @throws Exception
+     */
     public function __call($name,$args)
     {
         $ind = substr($name,0,3);// search prefix "set", "has" or "get"
