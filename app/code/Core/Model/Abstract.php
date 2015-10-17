@@ -1,4 +1,5 @@
 <?php
+
 abstract class Core_Model_Abstract extends CObject
 {
     protected $_resource = null;
@@ -54,15 +55,13 @@ abstract class Core_Model_Abstract extends CObject
 
     public function save()
     {
-        if($this->_loadAfter() == $this->_loadBefore()) {
+        if ($this->_loadAfter() == $this->_loadBefore()) {
             return $this;
-        }else{
+        } else {
             $this->getResourceModel()->save($this);
         }
-
+        return $this;
     }
-
-
 
 
 }

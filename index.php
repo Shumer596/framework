@@ -22,10 +22,9 @@ $model = App::getModel('blog/post')->load(1);
 var_dump($model->getContent());
 
 $model->setContent('Content was changed')->save();
-var_dump($model);
+var_dump($model->getContent());
 
-$model2 =App::getModel('blog/post')->load(1);
-var_dump($model2->getContent());
+
 
 //var_dump($model->getContent());
 //$anotherModel = App::getModel('blog/post')->load(1);

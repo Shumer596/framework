@@ -33,7 +33,7 @@ abstract class Core_Model_Resource_Abstract extends CObject
         $select = $this->getConnection()->getConnect()->select();
 
         $select->from($this->getTable())
-               ->where($field ? $field : $this->getIdField() . '=?', $value);
+            ->where($field ? $field : $this->getIdField() . '=?', $value);
         $stmt = $this->getConnection()->getConnect()->query($select);
 
         $object->setData($stmt->fetch());
@@ -43,7 +43,9 @@ abstract class Core_Model_Resource_Abstract extends CObject
 
     public function save(Core_Model_Abstract $object)
     {
-        $object->getData($this); //set to the DB
+        /* @var $select Zend_Db_Adapter_Pdo_Mysql */
+        $select = $this->getConnection()->getConnect();
+        $select->insert($this->getTable(), $object->getData());
 
     }
 
