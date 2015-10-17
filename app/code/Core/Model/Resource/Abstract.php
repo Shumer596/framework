@@ -1,4 +1,5 @@
 <?php
+
 abstract class Core_Model_Resource_Abstract extends CObject
 {
     protected $_tableName = null;
@@ -20,17 +21,19 @@ abstract class Core_Model_Resource_Abstract extends CObject
     {
         return $this->_idField;
     }
-    
+
     public function load(Core_Model_Abstract $object, $value, $field = null)
     {
         /* @var $select Zend_Db_Select */
         $select = $this->getConnection()->getConnect()->select();
 
         $select->from($this->getTable())
-            ->where($field ? $field : $this->getIdField() . '=?', $value);
+               ->where($field ? $field : $this->getIdField() . '=?', $value);
         $stmt = $this->getConnection()->getConnect()->query($select);
 
         $object->setData($stmt->fetch()); /* сет дата работает не правильно */
+        $object->setDataLoaded($stmt->fetch());
+        var_dump($object);
         return $this;
     }
 
@@ -43,7 +46,7 @@ abstract class Core_Model_Resource_Abstract extends CObject
     {
         /* TODO*/
     }
-    
+
     protected function _getConnection()
     {
 

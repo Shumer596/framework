@@ -19,7 +19,10 @@ App::run();
 
 $model = App::getModel('blog/post')->load(1);
 var_dump($model->getContent());
-
+//$model->setContent('Content was changed');
+//var_dump($model->getContent());
+//$anotherModel = App::getModel('blog/post')->load(1);
+//var_dump($anotherModel->getContent());
 
 
 //$model = App::getModel('blog/post')->load(1);
