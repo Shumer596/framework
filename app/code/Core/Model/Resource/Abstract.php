@@ -5,7 +5,12 @@ abstract class Core_Model_Resource_Abstract extends CObject
     protected $_tableName = null;
     protected $_idField = null;
 
-    abstract protected function _init($tableName, $idField);
+    protected function _init($tableName, $idField)
+    {
+        $this->_tableName = $tableName;
+        $this->_idField = $idField;
+        return $this;
+    }
 
     public function getConnection()
     {
@@ -31,15 +36,15 @@ abstract class Core_Model_Resource_Abstract extends CObject
                ->where($field ? $field : $this->getIdField() . '=?', $value);
         $stmt = $this->getConnection()->getConnect()->query($select);
 
-        $object->setData($stmt->fetch()); /* сет дата работает не правильно */
-        $object->setDataLoaded($stmt->fetch());
-        var_dump($object);
+        $object->setData($stmt->fetch());
+
         return $this;
     }
 
     public function save(Core_Model_Abstract $object)
     {
-        /* TODO*/
+        $object->getData($this); //set to the DB
+
     }
 
     public function delete(Core_Model_Abstract $object)

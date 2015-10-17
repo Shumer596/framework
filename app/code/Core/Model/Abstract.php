@@ -2,17 +2,34 @@
 abstract class Core_Model_Abstract extends CObject
 {
     protected $_resource = null;
-    protected $_primaryIdField = 'id';
-    protected $_dataLoaded;
+    protected $_IdField = null;
+    private $_originalData;
 
-
-    protected function _init($resourceName)
+    protected function _init($resourceName, $id)
     {
         $this->_resource = App::getResourceModel($resourceName);
+        $this->_IdField = $id;
+        return $this;
     }
 
+    protected function _loadBefore()
+    {
+        return $this;
+    }
 
-    protected function _getResource()
+    /**
+     * @return $this
+     */
+    protected function _loadAfter()
+    {
+        $this->_originalData = $this->getData();
+        return $this;
+    }
+
+    /**
+     * @return Core_Model_Resource_Abstract
+     */
+    public function getResourceModel()
     {
         return $this->_resource;
     }
@@ -24,25 +41,26 @@ abstract class Core_Model_Abstract extends CObject
      */
     public function load($id, $field = null)
     {
-        /* TODO */
-        $this->_getResource()->load($this, $id, $field);
-
+        $this->_loadBefore();
+        $this->getResourceModel()->load($this, $id, $field);
+        $this->_loadAfter();
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPrimaryIdField()
+    public function getId()
     {
-        return $this->_primaryIdField;
+        return $this->getData($this->_IdField);
     }
 
-    public function setDataLoaded()
+    public function save()
     {
-      $this->_dataLoaded = $this->getData();
-    }
+        if($this->_loadAfter() == $this->_loadBefore()) {
+            return $this;
+        }else{
+            $this->getResourceModel()->save($this);
+        }
 
+    }
 
 
 
