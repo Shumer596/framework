@@ -141,7 +141,7 @@ final class App
         $name = $request[1];
 
         $class_name = ucwords($module) . '_Model_Resource_' . ucwords($name);
-        return new $class_name;
+        return new $class_name();
     }
 
     /**

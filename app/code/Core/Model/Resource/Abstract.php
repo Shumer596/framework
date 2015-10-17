@@ -6,15 +6,32 @@ abstract class Core_Model_Resource_Abstract extends CObject
 
     abstract protected function _init($tableName, $idField);
 
-    public static function load(Core_Model_Abstract $object, $value, $field = null)
+    public function getConnection()
     {
-        $connect = App::getSingleton('core/resource');
-        $db = $connect->getConnect();
-        $select = $connect->select();
-        $select->from('blog_post')->where("$field=?",$value);
-        $result= $db->query($select);
-        var_dump($result->fetchAll());
+        return App::getSingleton('core/resource');
+    }
 
+    public function getTable()
+    {
+        return $this->_tableName;
+    }
+
+    public function getIdField()
+    {
+        return $this->_idField;
+    }
+    
+    public function load(Core_Model_Abstract $object, $value, $field = null)
+    {
+        /* @var $select Zend_Db_Select */
+        $select = $this->getConnection()->getConnect()->select();
+
+        $select->from($this->getTable())
+            ->where($field ? $field : $this->getIdField() . '=?', $value);
+        $stmt = $this->getConnection()->getConnect()->query($select);
+
+        $object->setData($stmt->fetch()); /* сет дата работает не правильно */
+        return $this;
     }
 
     public function save(Core_Model_Abstract $object)

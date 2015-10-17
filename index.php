@@ -17,6 +17,8 @@ App::run();
 
 
 
+$model = App::getModel('blog/post')->load(1);
+var_dump($model->getContent());
 
 
 
@@ -29,4 +31,4 @@ App::run();
 //$thirdModel = App::getModel('blog/post')->load(1);
 //var_dump($thirdModel->getTitle());
 
-Core_Model_Resource_Abstract::load(App::getModel('blog/post'),2,'id');
+//Core_Model_Resource_Abstract::load(App::getModel('blog/post'),2,'id');

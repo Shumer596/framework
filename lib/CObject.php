@@ -27,14 +27,12 @@ class CObject
      */
     public function setData($key, $value = NULL)
     {
-        if ($key && isset($value)){
-
+        if ($key && $value){
             $this->_data[$key] = $value;
-
+        } elseif (is_array($key)) {
+            $this->_data = $key;
         } else {
-
-            $this->_data[]=$key;
-
+            $this->_data[] = $key;
         }
         return $this;
     }
