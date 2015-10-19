@@ -55,12 +55,7 @@ abstract class Core_Model_Abstract extends CObject
 
     public function save()
     {
-        if ($this->_loadAfter() == $this->_loadBefore()) {
-            return $this;
-        } else {
-            $this->getResourceModel()->save($this);
-        }
-        return $this;
+        $this->getResourceModel()->save($this->_loadAfter());
     }
 
 

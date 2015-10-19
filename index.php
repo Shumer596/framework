@@ -12,25 +12,17 @@ App::run();
 //$result = $db->query($select);
 //var_dump($result->fetchAll());
 
-//$model = App::getModel('core/resource');
-//var_dump($model);
-
-
 
 $model = App::getModel('blog/post')->load(1);
-
-var_dump($model->getContent());
+//var_dump($model->getData());
+//var_dump($model->getContent());
 
 $model->setContent('Content was changed')->save();
-var_dump($model->getContent());
+$model->setAuthor('kozhuh');
+////var_dump($model->getContent());
+var_dump($model->getData());
 
-
-
-//var_dump($model->getContent());
-//$anotherModel = App::getModel('blog/post')->load(1);
-//var_dump($anotherModel->getContent());
-
-
+//Unit test #1
 //$model = App::getModel('blog/post')->load(1);
 //var_dump($model->getTitle());
 //$model->setTitle('fff')->save();
@@ -40,4 +32,8 @@ var_dump($model->getContent());
 //$thirdModel = App::getModel('blog/post')->load(1);
 //var_dump($thirdModel->getTitle());
 
-//Core_Model_Resource_Abstract::load(App::getModel('blog/post'),2,'id');
+// Unit test #2
+//$model = App::getModel('blog/post')->load(1);
+//$model->setAuthor('kozhug')->save();
+//$modelNew = App::getModel('blog/post');
+//$modelNew->setContent('123')->setTitle('111')->save();

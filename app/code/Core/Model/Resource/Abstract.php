@@ -43,10 +43,12 @@ abstract class Core_Model_Resource_Abstract extends CObject
 
     public function save(Core_Model_Abstract $object)
     {
-        /* @var $select Zend_Db_Adapter_Pdo_Mysql */
-        $select = $this->getConnection()->getConnect();
-        $select->insert($this->getTable(), $object->getData());
-
+        /* @var $mysql Zend_Db_Adapter_Pdo_Mysql */
+        $mysql = $this->getConnection()->getConnect();
+        $id= $object->getId();
+        $idField = $this->getIdField();
+        $where = $idField . '=' .$id;
+        $mysql->update($this->getTable(),$object->getData(),$where);
     }
 
     public function delete(Core_Model_Abstract $object)
